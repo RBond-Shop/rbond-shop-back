@@ -4,6 +4,8 @@ import { AppService } from './app.service'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { ContactsModule } from './contacts/contacts.module'
 import { Contacts } from './contacts/entities/contact.entity'
+import { Faq } from './faq/entities/faq.entity';
+import { FaqModule } from './faq/faq.module';
 
 @Module({
   imports: [
@@ -14,7 +16,7 @@ import { Contacts } from './contacts/entities/contact.entity'
       username: process.env.PGUSER,
       password: process.env.PGPASSWORD,
       database: process.env.PGDATABASE,
-      entities: [Contacts],
+      entities: [Faq,Contacts],
       synchronize: true,
       ssl: {
         // Set SSL mode to 'require' to ensure a secure connection
@@ -22,6 +24,7 @@ import { Contacts } from './contacts/entities/contact.entity'
       },
     }),
     ContactsModule,
+    FaqModule,
   ],
   controllers: [AppController],
   providers: [AppService],
